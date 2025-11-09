@@ -1,0 +1,22 @@
+{
+  "name": "playwright-e2e-automation",
+  "version": "1.0.0",
+  "description": "An end-to-end automation framework built with **Microsoft Playwright**, designed with clean architecture, modular components, and maintainable patterns.   This project automates test scenarios for the following application:",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oktaviadpp/playwright-e2e-automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oktaviadpp/playwright-e2e-automation/issues"
+  },
+  "homepage": "https://github.com/oktaviadpp/playwright-e2e-automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.0"
+  }
+}
