@@ -45,12 +45,11 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'],
-      launchOptions: {
-      args: ['--start-maximized'],   // buka browser dalam keadaan maximize
-      headless: true 
+        headless: true,
+        launchOptions: {
+         args: ['--start-maximized']
+        }
       }
-    }
-      
     },
 
     // {
