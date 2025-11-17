@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig, devices } from '@playwright/test';
 
 /**
@@ -10,17 +9,10 @@ import { defineConfig, devices } from '@playwright/test';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
- * @see https://playwright.dev/docs/test-configuration
+ * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
-  
-  /*Maximum time one test can run for*/
-  timeout: 30 * 1000,
-  expect: {
-    timeout : 5000
-  },
-
+  testDir: './e2e',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -44,13 +36,7 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'],
-      launchOptions: {
-      args: ['--start-maximized'],   // buka browser dalam keadaan maximize
-      headless: true 
-      }
-    }
-      
+      use: { ...devices['Desktop Chrome'] },
     },
 
     // {
@@ -91,4 +77,3 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
