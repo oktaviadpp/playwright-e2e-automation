@@ -1,8 +1,9 @@
 import {expect, test} from '@playwright/test'
+import { log } from 'console';
 import { text } from 'stream/consumers';
 
-/** TC-CO-001 : User Can Successfully Checkout and Place an Order */
-test("User Can Successfully Checkout and Place an Order", async ({page}) => {
+/** TC-CO-001 : E2E Order and Checkout */
+test("E2E Order and Checkout", async ({page}) => {
     //launch web
     await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
     
@@ -18,13 +19,18 @@ test("User Can Successfully Checkout and Place an Order", async ({page}) => {
 
     //Locator Cart and Checkout
     const buttonCheckout = page.getByRole("button", {name:"Checkout"});
-    const buttonPlaceOrder = page.getByRole("button", {name:"Place Order"});
+    const buttonPlaceOrder = page.locator("a.btnn:has-text('Place Order')");
     const inputCVV = page.locator("div.title:has-text('CVV Code') + input");
     const inputNameonCard = page.locator("div.title:has-text('Name on Card') + input");
     const selectCountry = page.locator("[placeholder*='Country']");
     const dropdownCountry = page.locator(".ta-results");
     const thanksOrder = page.locator("h1.hero-primary:has-text('Thankyou for the order.')");
-    const idCheckout = page.locator(".em-spacer-1 .ng-star-inserted");
+    const orderId = page.locator(".em-spacer-1 .ng-star-inserted");
+
+    //Locators Order
+    const menuOrder = page.locator("button[routerlink*=myorders]");
+    const titleOrder = page.locator("h1.ng-star-inserted:has-text('Your Orders')");
+    const rowsOrder = page.locator("tbody tr");
 
     //process login
     await email.fill("oktav1@gmail.com");
@@ -71,4 +77,21 @@ test("User Can Successfully Checkout and Place an Order", async ({page}) => {
     await page.waitForLoadState('networkidle');
     await thanksOrder.waitFor();
     expect(thanksOrder).toBeVisible();
+    const textOrderId = await orderId.textContent();
+    console.log("textOrderId",textOrderId);
+
+    //view detail order Process
+    await menuOrder.click();
+    await titleOrder.waitFor();
+    for(let i=0; i< await rowsOrder.count(); i++){
+        const rowsOrderId = await rowsOrder.nth(i).locator("th").textContent();
+        console.log("rowsOrderId",rowsOrderId)
+        if(textOrderId.includes(rowsOrderId)){
+            await rowsOrder.nth(i).locator("button.btn-primary").click();
+            break;
+        }
+    }
+    const orderIdDetail = await page.locator(".col-text").textContent();
+    console.log("orderIdDetail",orderIdDetail)
+    expect(textOrderId.includes(orderIdDetail)).toBeTruthy();
 });
