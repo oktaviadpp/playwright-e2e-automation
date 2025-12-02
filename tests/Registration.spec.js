@@ -26,10 +26,13 @@ test('Registratio using valid input',async({page}) => {
     await phoneNumber.fill("1234567890");
     //select by value
     await occupation.selectOption("2: Student");
+    //use this for checkbox or radio botton
     await genderFemale.click();
+    await expect(genderFemale).toBeChecked();
     await password.fill("Testing12345@");
     await confirmPassword.fill("Testing12345@");
     await checkbox.click();
+    await expect(checkbox).toBeChecked();
     await buttonRegis.click();
     // await expect(msgToastError).toHaveText("User already exisits with this Email Id");
     await page.screenshot({path: "screenshot/registration/data already exist.png"});
@@ -75,10 +78,12 @@ test ("Registration using valid input", async ({page}) => {
     await phoneNumber.fill("1234567890");
     //select by value
     await occupation.selectOption("2: Student");
-    await genderFemale.click();
+    //use this for checkbox or radio botton
+    await expect(genderFemale).toBeChecked();
     await password.fill("Testing12345@");
     await confirmPassword.fill("Testing12345@");
     await checkbox.click();
+    await expect(checkbox).toBeChecked();
     await buttonRegis.click();
     await successMsg.waitFor();
     await page.screenshot({path: "screenshot/registration/regis_sukses.png"});

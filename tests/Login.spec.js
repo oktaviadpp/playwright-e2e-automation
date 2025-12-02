@@ -30,7 +30,7 @@ test('Login using valid username and password', async({page})=>{
     */
 
     await text_Dashboard.waitFor();
-    expect(text_Dashboard).toBeVisible();
+    await expect(text_Dashboard).toBeVisible();
     await page.screenshot({path: "screenshot/login_sukses.png"});
 });
 
@@ -71,5 +71,3 @@ test('Login with empty username and password', async({page}) => {
     expect(error_msg_empty).toBeVisible();
     await page.screenshot({path: "screenshot/login_empty input.png"});
 });
-
-
