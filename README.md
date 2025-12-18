@@ -26,4 +26,7 @@ All test cases used in this project are documented here:
 
 ---
 
-## 📁 Project Structure
+## 📁 For Running Playwright Test
+```bash
+npx playwright test tests/test.spec.js --headed --debug
+```
