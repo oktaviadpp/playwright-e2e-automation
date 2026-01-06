@@ -30,3 +30,11 @@ All test cases used in this project are documented here:
 ```bash
 npx playwright test tests/test.spec.js --headed --debug
 ```
+
+---
+
+## 📁 What's in this Project?
+- Register and Login Flow
+- E2E Test Checkout Flow 
+- Handling Java Dialog
+- Assertion
